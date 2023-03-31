@@ -31,5 +31,4 @@ public class ClienteRequest {
 	@CPF
 	@Column(unique = true)
 	private String cpf;
-	 
 }

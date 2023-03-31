@@ -11,12 +11,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import br.com.reidobolo.clientepedido.cliente.application.api.ClienteRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,19 +49,14 @@ public class Cliente {
 	 
 	private LocalDateTime dataHoraDoCadastro;
 	private LocalDateTime dataHoraDaUltimaAlteracao;
-	
-	public Cliente(UUID idCliente, @NotBlank String nomeCompleto, @NotBlank @Email String email,
-			@NotBlank String telefone, Sexo sexo, @NotNull LocalDate dataNascimento, @CPF String cpf,
-			LocalDateTime dataHoraDoCadastro, LocalDateTime dataHoraDaUltimaAlteracao) {
-		super();
-		this.idCliente = idCliente;
-		this.nomeCompleto = nomeCompleto;
-		this.email = email;
-		this.telefone = telefone;
-		this.sexo = sexo;
-		this.dataNascimento = dataNascimento;
-		this.cpf = cpf;
-		this.dataHoraDoCadastro = dataHoraDoCadastro;
-		this.dataHoraDaUltimaAlteracao = dataHoraDaUltimaAlteracao;
-	}	
+
+	public Cliente(@Valid ClienteRequest clienteRequest) {
+		this.nomeCompleto = clienteRequest.getNomeCompleto();
+		this.email = clienteRequest.getEmail();
+		this.telefone = clienteRequest.getTelefone();
+		this.sexo = clienteRequest.getSexo();
+		this.dataNascimento = clienteRequest.getDataNascimento();
+		this.cpf = clienteRequest.getCpf();
+		this.dataHoraDoCadastro = LocalDateTime.now();
+	}
 }
