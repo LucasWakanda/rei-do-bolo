@@ -13,6 +13,7 @@ public class ClienteDetalhadoResponse {
 	public ClienteDetalhadoResponse(Cliente cliente) {
 		super();
 		this.idCliente = cliente.getIdCliente();
+		this.nomeCompleto = cliente.getNomeCompleto();
 		this.email = cliente.getEmail();
 		this.telefone = cliente.getTelefone();
 		this.sexo = cliente.getSexo();
@@ -21,6 +22,7 @@ public class ClienteDetalhadoResponse {
 		this.dataHoraDoCadastro = cliente.getDataHoraDoCadastro();
 	}
 	private UUID idCliente;
+	private String nomeCompleto;
 	private String  email;
 	private String telefone;
 	private Sexo sexo;
