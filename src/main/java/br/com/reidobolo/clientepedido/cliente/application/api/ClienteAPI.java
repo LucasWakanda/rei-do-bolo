@@ -15,5 +15,5 @@ import org.springframework.web.bind.annotation.RestController;
 public interface ClienteAPI {
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-ClienteResponse postCliente(@Valid @RequestBody  ClienteRequest clenteRequest);
+ClienteResponse postCliente(@Valid @RequestBody  ClienteRequest clienteRequest);
 }
