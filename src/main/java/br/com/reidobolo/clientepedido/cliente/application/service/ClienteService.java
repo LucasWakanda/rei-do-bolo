@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import br.com.reidobolo.clientepedido.cliente.application.api.ClienteDetalhadoResponse;
 import br.com.reidobolo.clientepedido.cliente.application.api.ClienteListResponse;
 import br.com.reidobolo.clientepedido.cliente.application.api.ClienteRequest;
+import br.com.reidobolo.clientepedido.cliente.application.api.ClienteRequestAlteracao;
 import br.com.reidobolo.clientepedido.cliente.application.api.ClienteResponse;
 
 public interface ClienteService {
@@ -15,4 +16,5 @@ public interface ClienteService {
 	List<ClienteListResponse> buscaTodosClientes();
 	ClienteDetalhadoResponse buscaClienteAtravesId(UUID idCliente);
 	void deletaClienteAtravesId(UUID idCliente);
+	void PatchAlterapostCliente(UUID idCliente, @Valid ClienteRequestAlteracao clienteAlteracaoRequest);
 }

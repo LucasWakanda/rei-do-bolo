@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.br.CPF;
 
 import br.com.reidobolo.clientepedido.cliente.application.api.ClienteRequest;
+import br.com.reidobolo.clientepedido.cliente.application.api.ClienteRequestAlteracao;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -58,5 +59,12 @@ public class Cliente {
 		this.dataNascimento = clienteRequest.getDataNascimento();
 		this.cpf = clienteRequest.getCpf();
 		this.dataHoraDoCadastro = LocalDateTime.now();
+	}
+
+	public void altera(ClienteRequestAlteracao clienteRequestAlteracao) {
+		this.nomeCompleto = clienteRequestAlteracao.getNomeCompleto();
+		this.telefone = clienteRequestAlteracao.getTelefone();
+		this.sexo = clienteRequestAlteracao.getSexo();
+		this.dataNascimento = clienteRequestAlteracao.getDataNascimento();		
 	}
 }

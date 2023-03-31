@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.reidobolo.clientepedido.cliente.application.api.ClienteDetalhadoResponse;
 import br.com.reidobolo.clientepedido.cliente.application.api.ClienteListResponse;
 import br.com.reidobolo.clientepedido.cliente.application.api.ClienteRequest;
+import br.com.reidobolo.clientepedido.cliente.application.api.ClienteRequestAlteracao;
 import br.com.reidobolo.clientepedido.cliente.application.api.ClienteResponse;
 import br.com.reidobolo.clientepedido.cliente.application.repository.ClienteRepository;
 import br.com.reidobolo.clientepedido.cliente.domain.Cliente;
@@ -53,5 +54,14 @@ public class ClienteApplicationService implements ClienteService {
 			Cliente cliente = clienteRepository.buscaClienteAtravesId(idCliente);
 			clienteRepository.deletaCliente(cliente);
 			log.info("[finaliza] ClienteApplicationService -  deletaClienteAtravesId ");
+		}
+			@Override
+			public void PatchAlterapostCliente(UUID idCliente, ClienteRequestAlteracao clienteRequestAlteracao) {
+				log.info("[inicia] ClienteApplicationService -  PatchAlterapostCliente ");
+				Cliente cliente = clienteRepository.buscaClienteAtravesId(idCliente);
+				cliente.altera(clienteRequestAlteracao);
+				clienteRepository.salva(cliente);
+				log.info("[finaliza] ClienteApplicationService -  PatchAlterapostCliente ");
+			
 	}
 }
