@@ -1,6 +1,7 @@
 package br.com.reidobolo.clientepedido.cliente.application.api;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -26,8 +27,26 @@ public class ClienteController implements ClienteAPI {
 
 	@Override
 	public List<ClienteListResponse> getTodosClientes() {
-		log.info("[Start]ClienteController getTodosClientes");
-		log.info("[finish]ClienteController getTodosClientes");
-		return null;
+		log.info("[inicia] ClienteController - getTodosClientes");
+		List<ClienteListResponse> clientes = clienteService.buscaTodosClientes();
+		log.info("[finaliza] ClienteController - getTodosClientes");
+		return clientes;
+	}
+		
+		@Override
+		public ClienteDetalhadoResponse getTodosClienteAtravesId(UUID idCliente) {
+			log.info("[inicia] ClienteController - getClienteAtravesId");
+			log.info("[idCliente]", idCliente);
+			ClienteDetalhadoResponse clienteDetalhado = clienteService.buscaClienteAtravesId(idCliente);
+			log.info("[finaliza] ClienteController - getClienteAtravesId");
+			return clienteDetalhado;
+		}
+			@Override
+			public void deletaClienteAtravesId(UUID idCliente) {
+				log.info("[inicia] ClienteController - deletaClienteAtravesId");
+				log.info("[idCliente]", idCliente);
+				clienteService.deletaClienteAtravesId(idCliente);
+				log.info("[finaliza] ClienteController - deletaClienteAtravesId");
+
 	}
 }
