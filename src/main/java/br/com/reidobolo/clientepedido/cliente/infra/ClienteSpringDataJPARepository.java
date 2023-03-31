@@ -1,4 +1,4 @@
-package br.com.reidobolo.clientepedido.cliente.application.infra;
+package br.com.reidobolo.clientepedido.cliente.infra;
 
 import java.util.UUID;
 
