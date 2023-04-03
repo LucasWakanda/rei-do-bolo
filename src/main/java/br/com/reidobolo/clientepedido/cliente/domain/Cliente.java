@@ -61,7 +61,7 @@ public class Cliente {
 		this.dataHoraDoCadastro = LocalDateTime.now();
 	}
 
-	public void altera(ClienteRequestAlteracao clienteRequestAlteracao) {
+	public void altera( @Valid ClienteRequestAlteracao clienteRequestAlteracao) {
 		this.nomeCompleto = clienteRequestAlteracao.getNomeCompleto();
 		this.telefone = clienteRequestAlteracao.getTelefone();
 		this.sexo = clienteRequestAlteracao.getSexo();

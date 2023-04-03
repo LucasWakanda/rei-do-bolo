@@ -29,5 +29,4 @@ public class ClienteDetalhadoResponse {
 	private LocalDate dataNascimento;
 	private String cpf;
 	private LocalDateTime dataHoraDoCadastro;
-	
 }
