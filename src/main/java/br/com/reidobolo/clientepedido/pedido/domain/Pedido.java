@@ -10,7 +10,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.Valid;
 
+import br.com.reidobolo.clientepedido.pedido.application.api.PedidoRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +21,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 public class Pedido {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(columnDefinition = "uuid", name = "idPedido", updatable = false, unique = true, nullable = false)
@@ -31,4 +34,11 @@ public class Pedido {
 	
 	private LocalDateTime dataHoraDoCadastro;
 	private LocalDateTime dataHoraDaUltimaAlteracao;
+	
+	public Pedido(UUID idCliente, @Valid PedidoRequest pedidoRequest) {
+		this.idClientePedido = idCliente;
+		this.sabor = pedidoRequest.getSabor();
+		this.quantidade = pedidoRequest.getQuantidade();
+		this.dataHoraDaUltimaAlteracao = LocalDateTime.now();
+	}
 }
