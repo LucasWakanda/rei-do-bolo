@@ -16,7 +16,7 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class PedidoControlller implements PedidoAPI {
 
-	private final  PedidoService pedidoService;
+	private final PedidoService pedidoService;
 
 	@Override
 	public PedidoResponse postPedido(UUID idCliente, @Valid PedidoRequest pedidoRequest) {
@@ -26,14 +26,22 @@ public class PedidoControlller implements PedidoAPI {
 		log.info("[finaliza] PedidoController - postPedido");
 		return pedido;
 	}
-		
-		@Override
-		public List<PedidoClienteListResponse> getPedidosDoClienteComId(UUID idCliente) {
-			log.info("[inicia] PedidoController - getPedidosDoClienteComId");
-			log.info("[idCliente] {}", idCliente);
-			List<PedidoClienteListResponse> pedidosDoCleinte = pedidoService.buscaPedidosDoClienteComId(idCliente);
-			log.info("[finaliza] PedidoController - getPedidosDoClienteComId");
-			return pedidosDoCleinte;
-		
+
+	@Override
+	public List<PedidoClienteListResponse> getPedidosDoClienteComId(UUID idCliente) {
+		log.info("[inicia] PedidoController - getPedidosDoClienteComId");
+		log.info("[idCliente] {}", idCliente);
+		List<PedidoClienteListResponse> pedidosDoCleinte = pedidoService.buscaPedidosDoClienteComId(idCliente);
+		log.info("[finaliza] PedidoController - getPedidosDoClienteComId");
+		return pedidosDoCleinte;
+	}
+
+	@Override
+	public PedidoClienteDetalhadoResponse getPedidoDoClienteComId(UUID idCliente, UUID idPedido) {
+		log.info("[inicia] PedidoController - getPedidoDoClienteComId");
+		log.info("[idCliente] {} - [idPedido] {}", idCliente, idPedido);
+		PedidoClienteDetalhadoResponse pedido = pedidoService.buscaPedidoDoClienteComId(idCliente, idPedido);
+		log.info("[finaliza] PedidoController - getPedidoDoClienteComId");
+		return pedido;
 	}
 }

@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import br.com.reidobolo.clientepedido.cliente.application.service.ClienteService;
+import br.com.reidobolo.clientepedido.pedido.application.api.PedidoClienteDetalhadoResponse;
 import br.com.reidobolo.clientepedido.pedido.application.api.PedidoClienteListResponse;
 import br.com.reidobolo.clientepedido.pedido.application.api.PedidoRequest;
 import br.com.reidobolo.clientepedido.pedido.application.api.PedidoResponse;
@@ -31,12 +32,22 @@ public class PedidoApplicationService implements PedidoService {
 		log.info("[finaliza] PedidoApplicationService - criaPedido");
 		return new PedidoResponse(pedido.getIdPedido());
 	}
+
 	@Override
 	public List<PedidoClienteListResponse> buscaPedidosDoClienteComId(UUID idCliente) {
 		log.info("[inica] PedidoApplicationService - buscaPedidosDoClienteComId");
-	    clienteService.buscaClienteAtravesId(idCliente);
-	    List<Pedido> pedidosDoCliente = pedidoRepository.buscaPedidosDoClienteComId(idCliente);
-	    log.info("[finaliza] PedidoApplicationService - buscaPedidosDoClienteComId");
-	  	return PedidoClienteListResponse.converte(pedidosDoCliente);
+		clienteService.buscaClienteAtravesId(idCliente);
+		List<Pedido> pedidosDoCliente = pedidoRepository.buscaPedidosDoClienteComId(idCliente);
+		log.info("[finaliza] PedidoApplicationService - buscaPedidosDoClienteComId");
+		return PedidoClienteListResponse.converte(pedidosDoCliente);
+	}
+
+	@Override
+	public PedidoClienteDetalhadoResponse buscaPedidoDoClienteComId(UUID idCliente, UUID idPedido) {
+		log.info("[inica] PedidoApplicationService - buscaPedidoDoClienteComID");
+		clienteService.buscaClienteAtravesId(idCliente);
+		Pedido pedido = pedidoRepository.buscaPedidoPeloId(idPedido);
+		log.info("[finaliza] PedidoApplicationService - buscaPedidoDoClienteComID");
+		return new PedidoClienteDetalhadoResponse(pedido);
 	}
 }

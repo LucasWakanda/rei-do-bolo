@@ -3,8 +3,10 @@ package br.com.reidobolo.clientepedido.pedido.infra;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import br.com.reidobolo.clientepedido.handler.APIException;
 import br.com.reidobolo.clientepedido.pedido.application.repository.PedidoRepository;
 import br.com.reidobolo.clientepedido.pedido.domain.Pedido;
 import lombok.RequiredArgsConstructor;
@@ -29,5 +31,14 @@ public class PedidoInfraRepository implements PedidoRepository {
 		var pedidos = pedidoSpringDataJPARepository.findByIdClientePedido(idCliente);
 		log.info("[finaliza] PedidoInfraRepository - buscaPedidosDoClienteComId");
 		return pedidos;		
+}
+
+	@Override
+	public Pedido buscaPedidoPeloId(UUID idPedido) {
+		log.info("[inicia] PedidoInfraRepository - buscaPedidoPeloId");
+		var pedido = pedidoSpringDataJPARepository.findById(idPedido)
+				.orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Pedido não encontrado para IdPedido =" + idPedido));
+		log.info("[finaliza] PedidoInfraRepository - buscaPedidoPeloId");
+		return pedido;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import javax.validation.Valid;
 
+import br.com.reidobolo.clientepedido.pedido.application.api.PedidoClienteDetalhadoResponse;
 import br.com.reidobolo.clientepedido.pedido.application.api.PedidoClienteListResponse;
 import br.com.reidobolo.clientepedido.pedido.application.api.PedidoRequest;
 import br.com.reidobolo.clientepedido.pedido.application.api.PedidoResponse;
@@ -12,4 +13,5 @@ import br.com.reidobolo.clientepedido.pedido.application.api.PedidoResponse;
 public interface PedidoService {
 	PedidoResponse criaPedido(UUID idCliente, @Valid PedidoRequest pedidoRequest);
 	List<PedidoClienteListResponse> buscaPedidosDoClienteComId(UUID idCliente);
+	PedidoClienteDetalhadoResponse buscaPedidoDoClienteComId(UUID idCliente, UUID idPedido);
 }
