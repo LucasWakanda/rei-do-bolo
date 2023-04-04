@@ -10,3 +10,4 @@ public interface PedidoRepository {
 	List<Pedido> buscaPedidosDoClienteComId(UUID idCliente);
 	Pedido buscaPedidoPeloId(UUID idPedido);
 }
+
