@@ -32,7 +32,7 @@ public interface PedidoAPI {
 	PedidoClienteDetalhadoResponse getPedidoDoClienteComId(@PathVariable UUID idCliente,
 			@PathVariable UUID idPedido);
 	
-	@DeleteMapping(value = "/{idPedido}")
+	@DeleteMapping(value = "/deleta/{idPedido}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	void deletePedidoClienteComId(@PathVariable UUID idCliente, @PathVariable UUID idPedido);
 }

@@ -40,7 +40,6 @@ public class Cliente {
 	private String  email;
 	@NotBlank
 	private String telefone;
-	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
 	@NotNull
 	private LocalDate dataNascimento;

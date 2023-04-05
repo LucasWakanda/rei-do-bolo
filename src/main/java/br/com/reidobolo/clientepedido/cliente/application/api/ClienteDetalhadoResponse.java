@@ -11,7 +11,6 @@ import lombok.Value;
 @Value
 public class ClienteDetalhadoResponse {
 	public ClienteDetalhadoResponse(Cliente cliente) {
-		super();
 		this.idCliente = cliente.getIdCliente();
 		this.nomeCompleto = cliente.getNomeCompleto();
 		this.email = cliente.getEmail();
